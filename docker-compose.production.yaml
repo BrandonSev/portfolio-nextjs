@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app: 
+    image: portfolio-nextjs-production
+    build:
+      context: .
+      dockerfile: ./Dockerfile.production
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/portfolio
+
+  nginx: 
+    image: portfolio-nginx
+    build: 
+      dockerfile: ./nginx/Dockerfile
+      context: .
+    ports:
+      - 80:80

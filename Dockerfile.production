@@ -1,0 +1,54 @@
+FROM node:16-alpine as deps
+
+ENV NODE_ENV=production
+
+RUN apk add --no-cache libc6-compat
+RUN npm install -g pnpm
+
+RUN mkdir /portfolio
+WORKDIR /portfolio
+
+COPY ./package.json ./pnpm-lock.yaml /portfolio/
+RUN pnpm install --frozen-lockfile
+
+
+
+FROM node:16-alpine as builder
+
+ENV NODE_ENV=production
+
+RUN npm install -g pnpm
+
+RUN mkdir /portfolio
+WORKDIR /portfolio
+
+COPY ./next.config.js /portfolio/
+COPY ./package.json pnpm-lock.yaml /portfolio/
+COPY --from=deps /portfolio/node_modules /portfolio/node_modules
+
+COPY public /portfolio/public
+COPY pages /portfolio/pages
+COPY styles /portfolio/styles
+
+RUN pnpm build
+
+
+
+FROM node:16-alpine as runner
+
+WORKDIR /usr
+
+ENV NODE_ENV=production
+RUN npm install -g pnpm
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /portfolio/public ./public
+
+COPY --from=builder --chown=nextjs:nodejs /portfolio/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /portfolio/.next/static ./.next/static
+
+USER nextjs
+
+CMD ["node", "server.js"]
