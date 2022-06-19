@@ -1,13 +1,17 @@
 import Image from "next/image";
-import ButtonLink from "../Button";
+import Link from "next/link";
 
-const Hero = ({ title, text, linkText, linkUrl }) => {
+const Hero = ({ text, linkText, linkUrl }) => {
   return (
     <div className={"container hero"}>
       <div className="hero_text">
-        <h1 dangerouslySetInnerHTML={{ __html: title }} />
+        <h1>
+          Je suis <br /> <span> Brandon Seveste</span>
+        </h1>
         <p>{text}</p>
-        <ButtonLink linkText={linkText} linkUrl={linkUrl} />
+        <Link href={linkUrl}>
+          <a className="pulse button">{linkText}</a>
+        </Link>
         <a
           className="button pulse"
           href={"https://cv.brandon-seveste.fr"}
@@ -18,7 +22,14 @@ const Hero = ({ title, text, linkText, linkUrl }) => {
         </a>
       </div>
       <div className="hero_image">
-        <img src={"/image/Hero.png"} alt={"photo"} />
+        <Image
+          src={"/image/Hero.png"}
+          alt={"photo"}
+          layout={"fill"}
+          objectFit={"contain"}
+          priority
+          quality={100}
+        />
       </div>
     </div>
   );

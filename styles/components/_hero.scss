@@ -2,54 +2,58 @@
   display: flex;
   flex-direction: column-reverse;
   gap: 3rem 0;
-  padding: 4rem 1rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   text-align: center;
 
   .hero_text {
     h1 {
-      font-size: 38px;
+      font-size: 2.4rem;
       font-weight: bold;
 
       span {
-        color: var(--secondary)
+        color: var(--blue);
       }
+    }
+
+    p {
+      padding: 2rem 0;
     }
 
     a {
       display: block;
 
       &:last-child {
-        background-color: var(--primary);
-        color: var(--secondary);
+        background-color: var(--text);
+        color: var(--blue);
         margin-top: 1rem;
       }
-    }
-
-    p {
-      font-size: 1rem;
-      padding: 2rem 0;
     }
   }
 
   .hero_image {
+    position: relative;
     display: flex;
     justify-content: center;
     width: 100%;
-    min-width: 320px;
-    padding-right: 1rem;
-    img {
-      max-width: 500px;
-      width: 100%;
+    height: 280px;
+    transition: 0.4s ease-in-out;
+  }
+}
+
+@media screen and (min-width: 575px) {
+  .hero {
+    .hero_image {
+      height: 350px;
     }
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 813px) {
   .hero {
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    gap: 3rem;
+    gap: 0 3rem;
     text-align: inherit;
 
     .hero_text {
@@ -70,15 +74,19 @@
         font-size: 46px;
       }
     }
+
+    .hero_image {
+      height: 450px;
+    }
   }
 }
 @media screen and (min-width: 1078px) {
-  .hero{
+  .hero {
     padding: 4rem 1rem;
     .hero_text {
-      width: 520px;
-      min-width: 520px;
-      max-width: 520px;
+      width: 620px;
+      min-width: 620px;
+      max-width: 620px;
 
       h1 {
         font-size: 63px;
