@@ -65,6 +65,10 @@ button {
 .button_small {
   padding: 0.5rem;
 }
+.active {
+  max-width: fit-content;
+  border-bottom: 3px solid var(--blue);
+}
 .pulse {
   animation: pulse 3s infinite;
 }
@@ -125,5 +129,9 @@ button {
     transform: rotate(360deg);
   }
 }
+
+@import "./pages/home";
+
 @import "./components/navbar";
 @import "./components/hero";
+@import "./components/footer";

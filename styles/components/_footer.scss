@@ -1,0 +1,54 @@
+.footer {
+    .footer_wrapper {
+        padding: 2rem 0;
+
+        .footer_left {
+            h4 {
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+            .footer_social_list {
+                display: flex;
+                margin-top: 2rem;
+
+                .footer_social_item {
+                    display: flex;
+                    align-items: center;
+
+                    &:not(:last-child) {
+                        margin-right: 2rem;
+                    }
+
+                    .social_logo {
+                        svg {
+                            width: 26px;
+                        }
+                    }
+
+                    .social_name {
+                        padding-left: 1rem;
+                    }
+                }
+            }
+        }
+
+        .footer_right {
+            font-size: 0.8rem;
+            margin-top: 2rem;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .footer {
+        .footer_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .footer_right {
+                font-size: 1rem;
+            }
+        }
+    }
+}
