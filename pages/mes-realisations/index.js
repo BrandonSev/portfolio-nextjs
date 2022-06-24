@@ -65,12 +65,12 @@ const MesRealisations = ({ projectData }) => {
                   initialSlide: 3,
                 },
               }}
-              rtl={false}
+              rtl={"false"}
               loop={true}
               autoplay={{
                 delay: 8000,
               }}
-              swipeable={true}
+              swipeable={"true"}
             >
               {projectData &&
                 projectData.map((project, i) => (
@@ -81,7 +81,7 @@ const MesRealisations = ({ projectData }) => {
                           <div className="project_card__header">
                             <Image
                               src={`${process.env.NEXT_PUBLIC_API_URL}/images/${project.images[0].src}`}
-                              alt={project.images.alt}
+                              alt={project.images.alt || "image carousel"}
                               layout={"fill"}
                               objectFit="cover"
                             />
@@ -108,7 +108,11 @@ const MesRealisations = ({ projectData }) => {
                   </SwiperSlide>
                 ))}
               <div className="swiper_navigation__wrapper">
-                <button className={"swiper-prev"} ref={navigationPrevRef}>
+                <button
+                  className={"swiper-prev"}
+                  ref={navigationPrevRef}
+                  aria-label="previous image"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -121,7 +125,11 @@ const MesRealisations = ({ projectData }) => {
                     />
                   </svg>
                 </button>
-                <button className={"swiper-next"} ref={navigationNextRef}>
+                <button
+                  className={"swiper-next"}
+                  ref={navigationNextRef}
+                  aria-label="next image"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"

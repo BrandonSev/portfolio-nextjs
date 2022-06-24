@@ -1,13 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Hero = ({ text, linkText, linkUrl }) => {
+const Hero = ({ title, text, linkText, linkUrl }) => {
   return (
     <div className={"container hero"}>
       <div className="hero_text">
-        <h1>
-          Je suis <br /> <span> Brandon Seveste</span>
-        </h1>
+        <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
         <p>{text}</p>
         <Link href={linkUrl}>
           <a className="pulse button">{linkText}</a>

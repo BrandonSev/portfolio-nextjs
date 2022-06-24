@@ -4,12 +4,16 @@ const nextConfig = {
   images: {
     domains: ["localhost"],
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   experimental: {
     outputStandalone: true,
   },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
+  },
+  i18n: {
+    locales: ["fr"],
+    defaultLocale: "fr",
   },
 };
 

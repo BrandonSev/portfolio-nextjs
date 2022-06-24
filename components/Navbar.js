@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
-// Function to find offset value of children <li> for transition marker active , specific to my navbar structure
+// Function to find offset value of children <li> for transition marker active , specific to navbar structure
 const findChildElementsOffset = (el, type) => {
   switch (type) {
     case "offsetLeft":

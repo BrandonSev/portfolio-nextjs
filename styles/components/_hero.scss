@@ -22,10 +22,11 @@
 
     a {
       display: block;
+      color: var(--background);
 
       &:last-child {
         background-color: var(--text);
-        color: var(--blue);
+        color: var(--background);
         margin-top: 1rem;
       }
     }

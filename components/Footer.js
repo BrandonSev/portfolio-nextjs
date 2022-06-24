@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer_wrapper">
           <div className="footer_left">
-            <h4 className="active">Me suivre</h4>
+            <h3 className="active">Me suivre</h3>
             <div className="footer_social_list">
               <a
                 href={"https://github.com/BrandonSev"}

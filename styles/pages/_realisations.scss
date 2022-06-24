@@ -50,6 +50,7 @@
 
             .project_card__header {
                 position: relative;
+                height: 250px;
                 max-height: 250px;
                 min-height: 250px;
                 width: 100%;
@@ -86,8 +87,9 @@
                 .project_card__button {
                     display: flex;
                     justify-content: flex-end;
-                    margin-top: 2rem;
                     justify-self: flex-end;
+                    margin-top: 2rem;
+                    color: var(--background);
                 }
             }
         }

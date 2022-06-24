@@ -16,6 +16,7 @@
         overflow: hidden;
 
         .wrapper-image {
+            position: relative;
             width: 100%;
             height: 230px;
             max-height: 230px;
@@ -75,7 +76,7 @@
         .modal_button {
             display: flex;
             justify-content: flex-end;
-            color: var(--text);
+            color: var(--background);
             font-size: 0.98rem;
         }
     }
