@@ -16,6 +16,7 @@ ENV NODE_ENV production
 COPY --from=builder /portfolio/next.config.js ./
 COPY --from=builder /portfolio/public ./public
 COPY --from=builder /portfolio/.next ./.next
+COPY --from=builder /portfolio/pages ./pages
 COPY --from=builder /portfolio/node_modules ./node_modules
 COPY --from=builder /portfolio/package.json ./package.json
 
