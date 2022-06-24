@@ -1,27 +1,27 @@
 FROM node:lts as dependencies
-WORKDIR /portfolio
+WORKDIR /urs/src/app
 COPY package.json pnpm-lock.yaml ./
 RUN yarn install --frozen-lockfile
 
 FROM node:lts as builder
-WORKDIR /portfolio
+WORKDIR /urs/src/app
 
-ARG NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
-ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+ARG NEXT_PUBLIC_API_URL=http://localhost:8000
+ENV NEXT_PUBLIC_API_URL=http://localhost:8000
 
 COPY . .
-COPY --from=dependencies /portfolio/node_modules ./node_modules
+COPY --from=dependencies /urs/src/app/node_modules ./node_modules
 RUN yarn build
 
 FROM node:lts as runner
-WORKDIR /portfolio
+WORKDIR /urs/src/app
 ENV NODE_ENV production
 
-COPY --from=builder /portfolio/next.config.js ./
-COPY --from=builder /portfolio/public ./public
-COPY --from=builder /portfolio/.next ./.next
-COPY --from=builder /portfolio/node_modules ./node_modules
-COPY --from=builder /portfolio/package.json ./package.json
+COPY --from=builder /urs/src/app/next.config.js ./
+COPY --from=builder /urs/src/app/public ./public
+COPY --from=builder /urs/src/app/.next ./.next
+COPY --from=builder /urs/src/app/node_modules ./node_modules
+COPY --from=builder /urs/src/app/package.json ./package.json
 
 CMD ["yarn", "start"]
 
@@ -31,6 +31,6 @@ FROM nginx:1.13.9-alpine
 RUN rm -rf /etc/nginx/conf.d
 RUN mkdir -p /etc/nginx/conf.d
 COPY ./nginx/default.conf /etc/nginx/conf.d/
-COPY --from=runner /portfolio /usr/share/nginx/html
+COPY --from=runner /urs/src/app /usr/share/nginx/html
 EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]

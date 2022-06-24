@@ -74,7 +74,7 @@ export default function Home({ categories }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/categories?underCategories=true&technologies=true`
   );
