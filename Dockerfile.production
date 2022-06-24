@@ -6,8 +6,8 @@ RUN yarn install --frozen-lockfile
 FROM node:lts as builder
 WORKDIR /portfolio
 
-ARG REACT_APP_API_URL=${REACT_APP_API_URL}
-ENV REACT_APP_API_URL=${REACT_APP_API_URL}
+ARG NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 COPY . .
 COPY --from=dependencies /portfolio/node_modules ./node_modules
