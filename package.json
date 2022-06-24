@@ -16,6 +16,7 @@
     "react-dom": "18.2.0",
     "react-google-recaptcha": "^2.1.0",
     "react-toastify": "^9.0.5",
+    "sharp": "^0.30.7",
     "swiper": "^8.2.4",
     "yup": "^0.32.11"
   },
