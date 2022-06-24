@@ -6,8 +6,8 @@ RUN yarn install --frozen-lockfile
 FROM node:lts as builder
 WORKDIR /urs/src/app
 
-ARG NEXT_PUBLIC_API_URL=http://localhost:8000
-ENV NEXT_PUBLIC_API_URL=http://localhost:8000
+ARG NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 COPY . .
 COPY --from=dependencies /urs/src/app/node_modules ./node_modules
