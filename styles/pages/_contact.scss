@@ -1,0 +1,89 @@
+.contact {
+    padding: 3rem 0;
+    background-color: var(--background-secondary);
+
+    h2 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .contact_wrapper {
+        .contact_image {
+            display: none;
+        }
+
+        .contact_form {
+            margin-top: 2rem;
+            width: 100%;
+
+            .contact_form__group {
+                margin-bottom: 2rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                label {
+                    display: block;
+                    padding-bottom: 1rem;
+                }
+
+                .input_controll {
+                    padding: 1rem;
+                    width: 100%;
+                    border-radius: 5px;
+                    outline: none;
+                    background-color: rgba(255, 255, 255, 0.04);
+                    border: 1px solid #ffffff33;
+                    font-family: "Roboto", sans-serif;
+                    color: var(--text);
+                    font-size: 1rem;
+
+                    &:focus {
+                        border: 1px solid var(--blue);
+                    }
+
+                    &:-webkit-autofill,
+                    &:-webkit-autofill:hover,
+                    &:-webkit-autofill:focus,
+                    &:-webkit-autofill:active {
+                        transition: background-color 5000s ease-in-out 0s;
+                        -webkit-text-fill-color: var(--text);
+                    }
+                }
+
+                .button {
+                    display: block;
+                    width: 100%;
+                    color: var(--background);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .contact {
+        .contact_wrapper {
+            display: flex;
+            align-items: center;
+
+            .contact_image {
+                position: relative;
+                display: block;
+                width: 100%;
+                height: 450px;
+                margin-top: 2rem;
+            }
+
+            .contact_form {
+                .contact_form__group {
+                    .button {
+                        margin-left: auto;
+                        max-width: fit-content;
+                    }
+                }
+            }
+        }
+    }
+}

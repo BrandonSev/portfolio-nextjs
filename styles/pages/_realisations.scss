@@ -1,0 +1,97 @@
+.project {
+    padding: 3rem 0;
+    background: var(--background-secondary);
+    position: relative;
+
+    .project_wrapper {
+        h2 {
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+        .swiper {
+            margin-top: 3rem;
+
+            .swiper-pagination.swiper-pagination-bullets {
+                position: absolute;
+                bottom: 20px;
+            }
+        }
+
+        .swiper_navigation__wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 0 2rem;
+            margin-top: 2rem;
+
+            .swiper-prev,
+            .swiper-next {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background-color: var(--background);
+                border: 2px solid var(--blue);
+                border-radius: 50%;
+                cursor: pointer;
+
+                svg {
+                    width: 24px;
+                }
+            }
+        }
+
+        .project_card {
+            background-color: var(--background);
+            border-radius: 10px;
+            border: 1px solid #3d3d3d;
+            overflow: hidden;
+
+            .project_card__header {
+                position: relative;
+                height: 250px;
+                max-height: 250px;
+                min-height: 250px;
+                width: 100%;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            p:not(.technology) {
+                color: var(--text);
+                opacity: 0.8;
+                padding: 1.5rem 0;
+                font-size: 0.98rem;
+                max-height: 111px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                flex: 1;
+                line-height: 1.4;
+            }
+
+            .project_card__body {
+                height: 262px;
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+
+                .technology {
+                    color: var(--blue);
+                    padding-bottom: 1rem;
+                    font-size: 0.9rem;
+                }
+
+                .project_card__button {
+                    display: flex;
+                    justify-content: flex-end;
+                    justify-self: flex-end;
+                    margin-top: 2rem;
+                    color: var(--background);
+                }
+            }
+        }
+    }
+}
