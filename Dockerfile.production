@@ -1,57 +1,26 @@
-FROM node:16-alpine as deps
-
-ENV NODE_ENV=production
-
-RUN apk add --no-cache libc6-compat
-RUN npm install -g pnpm
-
-RUN mkdir /portfolio
+FROM node:lts as dependencies
 WORKDIR /portfolio
+COPY package.json pnpm-lock.yaml ./
+RUN yarn install --frozen-lockfile
 
-COPY ./package.json ./pnpm-lock.yaml /portfolio/
-RUN pnpm install --frozen-lockfile
-
-
-
-FROM node:16-alpine as builder
-
-ENV NODE_ENV=production
-
-RUN npm install -g pnpm
-
-RUN mkdir /portfolio
+FROM node:lts as builder
 WORKDIR /portfolio
+COPY . .
+COPY --from=dependencies /portfolio/node_modules ./node_modules
+RUN yarn build
 
-COPY ./next.config.js /portfolio/
-COPY ./package.json pnpm-lock.yaml /portfolio/
-COPY --from=deps /portfolio/node_modules /portfolio/node_modules
-
-COPY public /portfolio/public
-COPY pages /portfolio/pages
-COPY styles /portfolio/styles
-
-RUN pnpm build
-
-
-
-FROM node:16-alpine as runner
-
-WORKDIR /usr
-
-ENV NODE_ENV=production
-RUN npm install -g pnpm
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
+FROM node:lts as runner
+WORKDIR /portfolio
+ENV NODE_ENV production
+# If you are using a custom next.config.js file, uncomment this line.
+COPY --from=builder /portfolio/next.config.js ./
 COPY --from=builder /portfolio/public ./public
+COPY --from=builder /portfolio/.next ./.next
+COPY --from=builder /portfolio/node_modules ./node_modules
+COPY --from=builder /portfolio/package.json ./package.json
 
-COPY --from=builder --chown=nextjs:nodejs /portfolio/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /portfolio/.next/static ./.next/static
+CMD ["yarn", "start"]
 
-USER nextjs
-
-CMD ["node", "server.js"]
 
 # production environment
 FROM nginx:1.13.9-alpine

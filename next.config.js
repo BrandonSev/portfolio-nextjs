@@ -5,9 +5,6 @@ const nextConfig = {
     domains: ["api.cr.brandon-seveste.fr", "localhost"],
   },
   reactStrictMode: false,
-  experimental: {
-    outputStandalone: true,
-  },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
