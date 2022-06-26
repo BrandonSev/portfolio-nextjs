@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export const ContactValidationSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Minimum de 5 caractères")
-    .required("Votre nom et prénom est obligatoire"),
+    .required("Votre nom et prénom sont obligatoires"),
   email: Yup.string()
     .email("Email incorrect")
     .required("Votre email est obligatoire"),

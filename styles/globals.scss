@@ -79,7 +79,7 @@ button {
   background-color: var(--background-secondary);
   border-radius: 50%;
   border: 2px solid var(--blue);
-  transform: translateX(100%);
+  transform: translateX(150%);
   transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
   cursor: pointer;
   @extend .pulse;
@@ -88,9 +88,6 @@ button {
   }
   &.show {
     transform: translateX(0);
-  }
-  &.hidden {
-    transform: translateX(150%);
   }
 }
 .px-1 {

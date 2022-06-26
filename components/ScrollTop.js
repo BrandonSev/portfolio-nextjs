@@ -13,11 +13,9 @@ const ScrollTop = () => {
   useEffect(() => {
     const toggle = () => {
       if (window.scrollY > 200) {
-        scrollTo.current.classList.remove("hidden");
         scrollTo.current.classList.add("show");
       } else {
         scrollTo.current.classList.remove("show");
-        scrollTo.current.classList.add("hidden");
       }
     };
     window.addEventListener("scroll", toggle);

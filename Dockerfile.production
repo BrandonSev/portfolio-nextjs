@@ -1,11 +1,19 @@
+#Deps
 FROM node:alpine as dependencies
+
 RUN mkdir -p /portfolio
+
 WORKDIR /portfolio
+
 COPY package.json pnpm-lock.yaml ./
+
 RUN yarn install --frozen-lockfile --production
 
+# Builder
 FROM node:alpine as builder
+
 RUN mkdir -p /portfolio
+
 WORKDIR /portfolio
 
 ARG NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
@@ -13,27 +21,24 @@ ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 COPY . .
 COPY --from=dependencies /portfolio/node_modules ./node_modules
+
 RUN yarn build
 
+#Runner
 FROM node:alpine as runner
+
 RUN mkdir -p /portfolio
+
 WORKDIR /portfolio
+
 ENV NODE_ENV production
-RUN yarn global add pm2
+
 COPY --from=builder /portfolio/next.config.js ./
 COPY --from=builder /portfolio/public ./public
 COPY --from=builder /portfolio/.next ./.next
 COPY --from=builder /portfolio/node_modules ./node_modules
 COPY --from=builder /portfolio/package.json ./package.json
 
-USER node
-CMD [ "pm2-runtime", "start", "yarn", "--", "start" ]
+EXPOSE 3000
 
-
-# production environment
-FROM nginx:alpine
-RUN rm -rf /etc/nginx/conf.d
-RUN mkdir -p /etc/nginx/conf.d
-COPY ./nginx/default.conf /etc/nginx/conf.d/
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD [ "yarn", "start" ]

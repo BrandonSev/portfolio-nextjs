@@ -8,6 +8,9 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
+  env: {
+    NEXT_PUBLIC_API_URL: "https://api.cr.brandon-seveste.fr",
+  },
 };
 
 module.exports = nextConfig;

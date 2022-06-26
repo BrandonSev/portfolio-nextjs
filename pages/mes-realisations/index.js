@@ -1,16 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Hero from "../../components/Hero";
 import Modal from "../../components/Modal";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { AnimateSharedLayout } from "framer-motion";
 import Image from "next/image";
 import Head from "next/head";
 
 const MesRealisations = ({ projectData }) => {
+  const [mounted, setMounted] = useState(false);
   const [show, setShow] = useState(false);
   const [modalIndex, setModalIndex] = useState(null);
   const navigationPrevRef = useRef(null);
@@ -20,6 +20,8 @@ const MesRealisations = ({ projectData }) => {
     setShow(true);
     setModalIndex(i);
   };
+
+  useEffect(() => setMounted(true), []);
 
   return (
     <>
@@ -73,10 +75,10 @@ const MesRealisations = ({ projectData }) => {
               swipeable={"true"}
             >
               {projectData &&
-                projectData.map((project, i) => (
-                  <SwiperSlide key={project.id}>
-                    <AnimateSharedLayout>
-                      <motion.div key={project.id} layoutId={project.id}>
+                projectData.map(
+                  (project, i) =>
+                    mounted && (
+                      <SwiperSlide key={project.id}>
                         <div className="project_card">
                           <div className="project_card__header">
                             <Image
@@ -103,10 +105,9 @@ const MesRealisations = ({ projectData }) => {
                             </div>
                           </div>
                         </div>
-                      </motion.div>
-                    </AnimateSharedLayout>
-                  </SwiperSlide>
-                ))}
+                      </SwiperSlide>
+                    )
+                )}
               <div className="swiper_navigation__wrapper">
                 <button
                   className={"swiper-prev"}
