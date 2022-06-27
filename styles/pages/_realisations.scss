@@ -11,7 +11,6 @@
 
         .swiper {
             margin-top: 3rem;
-
             .swiper-pagination.swiper-pagination-bullets {
                 position: absolute;
                 bottom: 20px;
@@ -45,7 +44,7 @@
         .project_card {
             background-color: var(--background);
             border-radius: 10px;
-            border: 1px solid #3d3d3d;
+            border: 1px solid var(--border);
             overflow: hidden;
 
             .project_card__header {
@@ -77,6 +76,7 @@
                 padding: 1.5rem;
                 display: flex;
                 flex-direction: column;
+                border-top: 1px solid var(--border);
 
                 .technology {
                     color: var(--blue);
@@ -91,6 +91,16 @@
                     margin-top: 2rem;
                     color: var(--background);
                 }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 972px) {
+    .project {
+        .project_wrapper {
+            .swiper {
+                padding-left: 1px;
             }
         }
     }

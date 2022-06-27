@@ -161,7 +161,7 @@ const MesRealisations = ({ projectData }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`);
   const projectData = await res.json();
 
@@ -169,6 +169,7 @@ export async function getServerSideProps() {
     props: {
       projectData,
     },
+    revalidate: 3600,
   };
 }
 

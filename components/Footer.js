@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Footer = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <div className="footer">
       <div className="container">
@@ -47,6 +49,18 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer_right">
+            <div className="theme_switcher">
+              <p>Thème</p>
+              <label id="switch" htmlFor="slider" className="switch">
+                <input
+                  type="checkbox"
+                  onChange={() => toggleTheme()}
+                  id="slider"
+                  checked={theme === "light"}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
             <p>Intégration et développement / Brandon Seveste</p>
           </div>
         </div>

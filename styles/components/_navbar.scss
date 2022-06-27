@@ -4,7 +4,7 @@ nav {
   padding: 1rem 0;
   background-color: var(--background-secondary);
   z-index: 2;
-  border-bottom: 1px solid #3d3d3d;
+  border-bottom: 1px solid var(--border);
   .navbar {
     position: relative;
     display: flex;

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import Hero from "../../components/Hero";
 import { useFormik } from "formik";
 import { ContactValidationSchema } from "../../validations";
@@ -6,10 +6,13 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { ThemeContext } from "../../context/ThemeContext";
+import ContactIllustration from "../../components/ContactIllustration";
 const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"));
 
 const Contact = () => {
   const ref = useRef();
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -51,6 +54,10 @@ const Contact = () => {
     [formik]
   );
 
+  useEffect(() => {
+    formik.setValues({ ...formik.values, verified: false }, false);
+  }, [toggleTheme]);
+
   return (
     <>
       <Head>
@@ -70,14 +77,15 @@ const Contact = () => {
           <h2 className="active">Me contacter</h2>
           <div className="contact_wrapper">
             <div className="contact_image">
-              <Image
-                src="/image/mail.svg"
-                alt="mail image"
-                layout="fill"
-                priority
+              <ContactIllustration
+                fill={
+                  theme === "dark" ? "var(--background)" : "var(--background)"
+                }
+                fillLetter={theme === "dark" ? "white" : "#e4f8ff"}
+                fillPants={theme === "dark" ? "#262626" : "#e4f8ff"}
               />
             </div>
-            <form className="contact_form">
+            <form className="contact_form" autoComplete="off">
               <div className="contact_form__group">
                 <label htmlFor="name">Nom & Prénom:</label>
                 <input
@@ -89,6 +97,7 @@ const Contact = () => {
                   className={`input_controll ${
                     formik.errors.name ? "input-error" : ""
                   }`}
+                  aria-label="votre nom et prénom"
                 />
                 {formik.errors.name && (
                   <p className="error">{formik.errors.name}</p>
@@ -105,6 +114,7 @@ const Contact = () => {
                   className={`input_controll ${
                     formik.errors.email ? "input-error" : ""
                   }`}
+                  aria-label="votre email"
                 />
                 {formik.errors.email && (
                   <p className="error">{formik.errors.email}</p>
@@ -122,18 +132,31 @@ const Contact = () => {
                   className={`input_controll ${
                     formik.errors.message ? "input-error" : ""
                   }`}
+                  aria-label="votre message"
                 />
                 {formik.errors.message && (
                   <p className="error">{formik.errors.message}</p>
                 )}
               </div>
               <div className="contact_form__group">
-                <ReCAPTCHA
-                  sitekey="6Lcsg5QgAAAAAHpS3WIAZg8hnBishalUjczuVIPt"
-                  onChange={handleChange}
-                  theme={"dark"}
-                  ref={ref}
-                />
+                {theme === "dark" ? (
+                  <ReCAPTCHA
+                    sitekey="6Lcsg5QgAAAAAHpS3WIAZg8hnBishalUjczuVIPt"
+                    onChange={handleChange}
+                    theme={"dark"}
+                    ref={ref}
+                  />
+                ) : (
+                  <>
+                    <span></span>
+                    <ReCAPTCHA
+                      sitekey="6Lcsg5QgAAAAAHpS3WIAZg8hnBishalUjczuVIPt"
+                      onChange={handleChange}
+                      theme={"light"}
+                      ref={ref}
+                    />
+                  </>
+                )}
                 {formik.errors.verified && !formik.values.verified && (
                   <p className="error">{formik.errors.verified}</p>
                 )}
@@ -148,6 +171,7 @@ const Contact = () => {
                     alignItems: "center",
                     justifyContent: "center",
                   }}
+                  aria-label="envoyer le message"
                 >
                   {formik.isSubmitting ? (
                     <>

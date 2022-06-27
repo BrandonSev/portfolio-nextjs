@@ -33,8 +33,8 @@
                     width: 100%;
                     border-radius: 5px;
                     outline: none;
-                    background-color: rgba(255, 255, 255, 0.04);
-                    border: 1px solid #ffffff33;
+                    background-color: var(--background);
+                    border: 1px solid var(--border);
                     font-family: "Roboto", sans-serif;
                     color: var(--text);
                     font-size: 1rem;
@@ -42,20 +42,12 @@
                     &:focus {
                         border: 1px solid var(--blue);
                     }
-
-                    &:-webkit-autofill,
-                    &:-webkit-autofill:hover,
-                    &:-webkit-autofill:focus,
-                    &:-webkit-autofill:active {
-                        transition: background-color 5000s ease-in-out 0s;
-                        -webkit-text-fill-color: var(--text);
-                    }
                 }
 
                 .button {
                     display: block;
                     width: 100%;
-                    color: var(--background);
+                    color: var(--text-button);
                 }
             }
         }

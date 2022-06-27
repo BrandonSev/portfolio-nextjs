@@ -7,6 +7,18 @@
   --background-secondary: #2c2c2c;
   --blue: #00c4f0;
   --text-light: #c0c0c0;
+  --border: #3d3d3d;
+  --text-button: var(--background);
+}
+
+[data-theme="light"] {
+  --background: #fff;
+  --text: #121c42;
+  --background-secondary: #f7fafb;
+  --blue: #00c4f0;
+  --text-light: #383838;
+  --border: #dbdbdb;
+  --text-button: var(--text);
 }
 
 * {
@@ -71,20 +83,29 @@ button {
 .pulse {
   animation: pulse 3s infinite;
 }
+.g-recaptcha {
+  transform: scale(0.77);
+  transform-origin: 0 0;
+}
 .scrollTop {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
-  padding: 0.6rem;
+  width: 36px;
+  height: 36px;
   background-color: var(--background-secondary);
   border-radius: 50%;
   border: 2px solid var(--blue);
   transform: translateX(150%);
   transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
   cursor: pointer;
-  @extend .pulse;
+
   svg {
+    position: absolute;
+    top: 4px;
+    left: 4px;
     width: 24px;
+    height: 24px;
   }
   &.show {
     transform: translateX(0);

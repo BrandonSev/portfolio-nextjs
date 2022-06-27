@@ -3,12 +3,12 @@ import React, { useCallback, useEffect, useRef } from "react";
 const ScrollTop = () => {
   const scrollTo = useRef();
 
-  const scrollToTop = useCallback(() => {
+  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  }, []);
+  };
 
   useEffect(() => {
     const toggle = () => {
@@ -23,7 +23,7 @@ const ScrollTop = () => {
   }, []);
 
   return (
-    <div className={`scrollTop`} onClick={scrollToTop} ref={scrollTo}>
+    <div className={"scrollTop"} onClick={scrollToTop} ref={scrollTo}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"

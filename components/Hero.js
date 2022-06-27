@@ -1,7 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
+import HeroImage from "./HeroImage";
 
 const Hero = ({ title, text, linkText, linkUrl }) => {
+  const { theme } = useContext(ThemeContext);
   return (
     <div className={"container hero"}>
       <div className="hero_text">
@@ -20,13 +23,8 @@ const Hero = ({ title, text, linkText, linkUrl }) => {
         </a>
       </div>
       <div className="hero_image">
-        <Image
-          src={"/image/Hero.png"}
-          alt={"photo"}
-          layout={"fill"}
-          objectFit={"contain"}
-          priority
-          quality={100}
+        <HeroImage
+          fillEllips={theme === "dark" ? "rgba(44,44,44)" : "rgba(215,215,215)"}
         />
       </div>
     </div>
