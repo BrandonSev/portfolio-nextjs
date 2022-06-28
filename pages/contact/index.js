@@ -1,25 +1,25 @@
-import React, { useCallback, useContext, useEffect, useRef } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import Hero from "../../components/Hero";
 import { useFormik } from "formik";
 import { ContactValidationSchema } from "../../validations";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import Head from "next/head";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import { ThemeContext } from "../../context/ThemeContext";
-import ContactIllustration from "../../components/ContactIllustration";
-const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"));
+// import ContactIllustration from "../../components/ContactIllustration";
+// const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"));
 
 const Contact = () => {
-  const ref = useRef();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const formik = useFormik({
     initialValues: {
-      name: "",
+      firstname: "",
+      lastname: "",
       email: "",
       message: "",
-      token: "",
-      verified: false,
+      // token: "",
+      // verified: false,
     },
     validationSchema: ContactValidationSchema,
     onSubmit: async (values) => {
@@ -56,6 +56,7 @@ const Contact = () => {
 
   useEffect(() => {
     formik.setValues({ ...formik.values, verified: false }, false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggleTheme]);
 
   return (
@@ -67,7 +68,7 @@ const Contact = () => {
       <Hero
         title={"Me contacter"}
         text={
-          "Vous désirez me contacter pour des questions spécifiques ou professionnelles, n'hésitez pas à remplir le formulaire ci-dessous."
+          "Si vous souhaitez prendre contact avec moi pour des questions spécifiques ou professionnelles, merci de remplir le formulaire ci-dessous."
         }
         linkText={"A propos de moi"}
         linkUrl={"/"}
@@ -77,34 +78,66 @@ const Contact = () => {
           <h2 className="active">Me contacter</h2>
           <div className="contact_wrapper">
             <div className="contact_image">
-              <ContactIllustration
-                fill={
-                  theme === "dark" ? "var(--background)" : "var(--background)"
-                }
-                fillLetter={theme === "dark" ? "white" : "#e4f8ff"}
-                fillPants={theme === "dark" ? "#262626" : "#e4f8ff"}
-              />
+              {theme &&
+                (theme === "dark" ? (
+                  <Image
+                    src={"/image/mail.png"}
+                    width={"457px"}
+                    height={"377px"}
+                    alt="mail illustration"
+                    quality={100}
+                    priority
+                  />
+                ) : (
+                  <Image
+                    src={"/image/mail-light.png"}
+                    width={"457px"}
+                    height={"377px"}
+                    alt="mail illustration"
+                    quality={100}
+                    priority
+                  />
+                ))}
             </div>
             <form className="contact_form" autoComplete="off">
-              <div className="contact_form__group">
-                <label htmlFor="name">Nom & Prénom:</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                  className={`input_controll ${
-                    formik.errors.name ? "input-error" : ""
-                  }`}
-                  aria-label="votre nom et prénom"
-                />
-                {formik.errors.name && (
-                  <p className="error">{formik.errors.name}</p>
-                )}
+              <div className="contact_form__group wrapper_fullname">
+                <div className="lastname contact_form__group">
+                  <label htmlFor="lastname">Nom:</label>
+                  <input
+                    type="text"
+                    name="lastname"
+                    id="lastname"
+                    onChange={formik.handleChange}
+                    value={formik.values.lastname}
+                    className={`input_controll ${
+                      formik.errors.lastname ? "input-error" : ""
+                    }`}
+                    aria-label="votre nom"
+                  />
+                  {formik.errors.lastname && (
+                    <p className="error">{formik.errors.lastname}</p>
+                  )}
+                </div>
+                <div className="firstname">
+                  <label htmlFor="firstname">Prénom:</label>
+                  <input
+                    type="text"
+                    name="firstname"
+                    id="firstname"
+                    onChange={formik.handleChange}
+                    value={formik.values.firstname}
+                    className={`input_controll ${
+                      formik.errors.firstname ? "input-error" : ""
+                    }`}
+                    aria-label="votre prénom"
+                  />
+                  {formik.errors.firstname && (
+                    <p className="error">{formik.errors.firstname}</p>
+                  )}
+                </div>
               </div>
               <div className="contact_form__group">
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email">E-mail:</label>
                 <input
                   type="email"
                   name="email"
@@ -116,6 +149,9 @@ const Contact = () => {
                   }`}
                   aria-label="votre email"
                 />
+                <p className="text-muted">
+                  Votre e-mail me servira à vous répondre en cas de besoin.
+                </p>
                 {formik.errors.email && (
                   <p className="error">{formik.errors.email}</p>
                 )}
@@ -138,7 +174,7 @@ const Contact = () => {
                   <p className="error">{formik.errors.message}</p>
                 )}
               </div>
-              <div className="contact_form__group">
+              {/* <div className="contact_form__group">
                 {theme === "dark" ? (
                   <ReCAPTCHA
                     sitekey="6Lcsg5QgAAAAAHpS3WIAZg8hnBishalUjczuVIPt"
@@ -160,7 +196,7 @@ const Contact = () => {
                 {formik.errors.verified && !formik.values.verified && (
                   <p className="error">{formik.errors.verified}</p>
                 )}
-              </div>
+              </div> */}
               <div className="contact_form__group">
                 <button
                   type="submit"

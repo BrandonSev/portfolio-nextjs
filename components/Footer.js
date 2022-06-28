@@ -56,6 +56,7 @@ const Footer = () => {
                   type="checkbox"
                   onChange={() => toggleTheme()}
                   id="slider"
+                  name="slider"
                   checked={theme === "light"}
                 />
                 <span className="slider round"></span>

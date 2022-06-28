@@ -61,6 +61,12 @@ button {
 .error {
   margin-top: 0.5rem;
   color: red;
+  font-size: 0.8rem;
+}
+.text-muted {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
 }
 .input-error {
   border: 1px solid red !important;
@@ -146,9 +152,7 @@ button {
     transform: rotate(360deg);
   }
 }
-iframe .rc-anchor-dark {
-  background: red !important;
-}
+
 @import "./pages/home";
 @import "./pages/realisations";
 @import "./pages/contact";

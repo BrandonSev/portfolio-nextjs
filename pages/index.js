@@ -14,7 +14,7 @@ export default function Home({ categories }) {
         <Hero
           title={"Je suis <br /> <span> Brandon Seveste</span>"}
           text={
-            "Passionné de développement, depuis maintenant 3 ans, je me suis formé sur différents types de langages de manière autodidacte. J'ai décidé de rejoindre une formation à la Wild Code School en septembre 2021 en tant que développeur web et web mobile afin de faire de ma passion, mon métier."
+            "Passionné de développement, depuis maintenant 3 ans, je me suis formé sur différents types de langages de manière autodidacte. Diplômé d'un titre de développeur web et web mobile, je suis à la recherche d'une alternance pour septembre 2022, dans le but d'approfondir mes compétences et m'imprégner des conditions réelles en entreprise."
           }
           linkText={"Voir mes réalisations"}
           linkUrl={"/mes-realisations"}
