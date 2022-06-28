@@ -18,7 +18,24 @@ const Navbar = () => {
   const router = useRouter();
   const [width, setWidth] = useState(0);
   const [left, setLeft] = useState(0);
+  const [lastScroll, setLastScroll] = useState(0);
   const navLink = useRef();
+  const nav = useRef();
+
+  const handleScroll = () => {
+    const currScroll = window.scrollY;
+    if (lastScroll > currScroll) {
+      nav.current.classList.remove("hidden");
+    } else {
+      nav.current.classList.add("hidden");
+    }
+    setLastScroll(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
 
   useEffect(() => {
     const navItem = navLink.current.childNodes;
@@ -42,7 +59,7 @@ const Navbar = () => {
     }
   }, [router.pathname]);
   return (
-    <nav>
+    <nav ref={nav}>
       <div className="container">
         <ul className="navbar" ref={navLink}>
           <li className="marker" style={{ width, left: left }} />

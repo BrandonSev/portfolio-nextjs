@@ -108,6 +108,7 @@ const MesRealisations = ({ projectData }) => {
                               alt={project.images.alt || "image carousel"}
                               layout={"fill"}
                               objectFit="cover"
+                              priority
                             />
                           </div>
                           <div className="project_card__body">
