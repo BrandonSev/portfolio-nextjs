@@ -13,7 +13,7 @@ nav {
 
     .marker {
       position: absolute;
-      bottom: -1rem; // diff border nav element
+      bottom: calc(-1rem - 1px); // diff padding nav element + border
       height: 3px;
       background-color: var(--blue);
       padding: 0;
