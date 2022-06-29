@@ -5,11 +5,12 @@ services:
     build: 
       dockerfile: ./Dockerfile.production
       context: .
-    container_name: nextjs
+    container_name: nextjs_portoflio
     ports:
       - "3000:3000"
 
   nginx: 
     build: ./nginx
+    container_name: nginx_nextjs_portfolio
     ports:
       - "80:80"
