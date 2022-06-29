@@ -81,7 +81,7 @@ const Contact = () => {
               {theme &&
                 (theme === "dark" ? (
                   <Image
-                    src={"/image/mail.png"}
+                    src={"/image/mail.svg"}
                     width={"457px"}
                     height={"377px"}
                     alt="mail illustration"
@@ -90,7 +90,7 @@ const Contact = () => {
                   />
                 ) : (
                   <Image
-                    src={"/image/mail-light.png"}
+                    src={"/image/mail-light.svg"}
                     width={"457px"}
                     height={"377px"}
                     alt="mail illustration"

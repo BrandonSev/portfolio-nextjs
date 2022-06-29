@@ -28,7 +28,7 @@
 }
 
 ::selection {
-  background-color: var(--blue);
+  background-color: var(--text);
   color: var(--background);
 }
 
@@ -123,12 +123,12 @@ button {
   animation: rotate 1.5s ease infinite;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #ffffff33;
+  border-radius: 5px;
+  background-color: var(--blue);
 }
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 3px;
   height: 8px;
-  background-color: var(--background);
 }
 @keyframes pulse {
   0% {
