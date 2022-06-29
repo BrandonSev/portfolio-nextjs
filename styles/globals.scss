@@ -9,6 +9,7 @@
   --text-light: #c0c0c0;
   --border: #3d3d3d;
   --text-button: var(--background);
+  --tags: var(--blue);
 }
 
 [data-theme="light"] {
@@ -19,6 +20,7 @@
   --text-light: #383838;
   --border: #dbdbdb;
   --text-button: var(--text);
+  --tags: #565b99;
 }
 
 * {
@@ -75,7 +77,6 @@ button {
   display: inline-block;
   background-color: var(--blue);
   padding: 1rem;
-  box-shadow: 0px 2px 13px rgba(0, 196, 240, 0.42);
   border-radius: 6px;
   cursor: pointer;
 }
@@ -89,10 +90,7 @@ button {
 .pulse {
   animation: pulse 3s infinite;
 }
-.g-recaptcha {
-  transform: scale(0.77);
-  transform-origin: 0 0;
-}
+
 .scrollTop {
   position: fixed;
   right: 1rem;
