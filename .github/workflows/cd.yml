@@ -22,8 +22,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
-        password: ${{ secrets.SECRET_KEY }}
-        key: ${{ secrets.SECRET_KEY }}
+        password: ${{ secrets.PASSWORD }}
         port: 22
         script: |
           cd web/portfolio-nextjs
