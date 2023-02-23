@@ -26,5 +26,5 @@ jobs:
         port: 22
         script: |
           cd web/portfolio-nextjs
-          git pull origin dev
+          sudo git pull origin dev
           docker compose -f ./docker-compose.production.yaml up -d --build
