@@ -6,15 +6,15 @@ export default function Home({ categories }) {
   return (
     <>
       <Head>
-        <title>Brandon Seveste - Développeur web et web mobile</title>
-        <meta name="description" content="Développeur web et web mobile" />
+        <title>Brandon Seveste - Concepteur développeur d'application</title>
+        <meta name="description" content="Concepteur développeur d'application" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section id="hero">
         <Hero
           title={"Je suis <br /> <span> Brandon Seveste</span>"}
           text={
-            "Passionné de développement, depuis maintenant 3 ans, je me suis formé sur différents types de langages de manière autodidacte. Diplômé d'un titre de développeur web et web mobile, je suis à la recherche d'une alternance pour septembre 2022, dans le but d'approfondir mes compétences et m'imprégner des conditions réelles en entreprise."
+            "Passionné de développement, depuis maintenant 3 ans, je me suis formé sur différents types de langages de manière autodidacte. Diplômé d'un titre de développeur web et web mobile. Je suis actuellement en alternance Concepteur développeur d'application chez Polyvalence Immobilier depuis Septembre 2022"
           }
           linkText={"Voir mes réalisations"}
           linkUrl={"/mes-realisations"}
